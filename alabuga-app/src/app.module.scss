@@ -1,36 +1,45 @@
 @import './colors.scss';
 
 * {
-    margin: 0;
-    padding: 0;
-    border: 0;
-    box-sizing: border-box;
-    overflow: auto;
+  margin: 0;
+  padding: 0;
+  border: 0;
+  box-sizing: border-box;
 }
 
-html, body {
+html,
+body {
   width: 100vw;
   height: 100vh;
+  overflow-x: hidden;
+}
+
+html {
+  overflow-y: auto;
 }
 
 
 .app {
-    width: 100vw;
-    height: 100vh;
+  width: 100vw;
+  min-height: 100vh;
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  background-color: $background-color;
+  font-family: Roboto;
+
+  &__container {
+    width: 50%;
+    height: 100%;
 
     display: flex;
     justify-content: center;
     align-items: center;
 
-    background-color: $background-color;
-    font-family: Roboto;
-
-    &__container{
-        width: 50%;
-        height: 100%;
-
-        padding: 30px;
-    }
+    padding: 30px;
+  }
 }
 
 @media (min-width: 320px) and (max-width: 1000px) {

@@ -1,0 +1,8 @@
+@import '../../colors.scss';
+
+.progressBar {
+    width: 100%;
+    background-color: $profile-color;
+    border-radius: 5px;
+    overflow: hidden;
+}

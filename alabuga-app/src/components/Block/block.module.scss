@@ -1,4 +1,4 @@
-.block{
+.block {
     width: 100%;
     height: auto;
 
@@ -11,8 +11,13 @@
 
     &__box {
         width: 100%;
-        min-height: 300px;
+        // min-height: 300px;
         height: auto;
+
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        flex-flow: column nowrap;
 
         border-radius: 15px;
     }
