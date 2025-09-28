@@ -13,8 +13,8 @@ export interface LiderProps {
 const LiderItem = ({ id, index, name, counts, idPerson }: LiderProps &  { idPerson: number }) => {
     const isUserName= id === idPerson;
     return (
-        <div className={cx(st.liderItem, isUserName && st[`liderItem-name`])}>
-            <h1 className={index && index < 4 && st[`liderItem-top`]}>{index}</h1>
+        <div className={cx(st.liderItem, isUserName ? st[`liderItem-name`]: '')}>
+            <h1 className={index && index < 4 ? st[`liderItem-top`] : ''}>{index}</h1>
             <div className={st.liderItem__text}>
                 {name.toUpperCase()}
                 <p>{counts}</p>

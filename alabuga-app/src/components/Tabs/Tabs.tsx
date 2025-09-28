@@ -1,4 +1,3 @@
-import React from "react";
 import { useLocation, useNavigate } from 'react-router-dom';
 import cart from '../../imgs/shopping-cart.svg';
 import user from '../../imgs/user.svg';
@@ -38,7 +37,7 @@ const Tabs = () => {
             {tabs.map((tab) => (
                 <div
                     key={tab.id}
-                    className={cx(st.tab, getActiveTab() === tab.id && st[`tab-active`])}
+                    className={cx(st.tab, getActiveTab() === tab.id ? st[`tab-active`] : '')}
                     onClick={() => handleTabClick(tab.path)}
                 >
                     <img src={tab.icon} alt='' />

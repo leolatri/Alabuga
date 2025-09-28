@@ -2,6 +2,8 @@ import { ArtifactProps } from "./components/Personal/Artifact/Artifact";
 import star from './imgs/star.svg';
 import meteor from './imgs/meteor.svg';
 import { LiderProps } from "./components/Personal/LiderBord/LiderBord";
+import { BranchListProps } from "./components/Branches/Branch/list/BranchList";
+import { ContentProps } from "./components/Branches/Content/Content";
 
 export const data = {
     id: 2,
@@ -122,4 +124,61 @@ export const Liders: LiderProps[] = [
         counts: 4320,
     },
 
+];
+
+export const Branches: ContentProps[] = [
+    {
+    id: 1,
+    mana: 100,
+    name: "Главный филиал",
+    status: 1,
+    experience: 5000,
+    description: "Основной филиал компании в центре города",
+    type: "main"
+  },
+  {
+    id: 2,
+    mana: 75,
+    name: "Северный филиал",
+    status: 1,
+    experience: 3200,
+    description: "Филиал в северной части города",
+    type: "regional"
+  },
+  {
+    id: 3,
+    mana: 50,
+    name: "Западный филиал",
+    status: 0,
+    experience: 1500,
+    description: "Филиал на западе, временно неактивен",
+    type: "regional"
+  },
+  {
+    id: 4,
+    mana: 120,
+    name: "Южный филиал",
+    status: 1,
+    experience: 4200,
+    description: "Филиал в южном районе с высоким трафиком",
+    type: "premium"
+  },
+  {
+    id: 5,
+    mana: 30,
+    name: "Восточный филиал",
+    status: 0,
+    experience: 800,
+    description: "Новый филиал в восточной части",
+    type: "startup"
+  },
+  {
+    id: 6,
+    mana: 90,
+    name: "Центральный офис",
+    status: 1,
+    experience: 6500,
+    description: "Центральный офис управления",
+    type: "headquarters"
+  }
 ];

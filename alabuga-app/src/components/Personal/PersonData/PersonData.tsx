@@ -7,6 +7,7 @@ import rank1 from '../../../imgs/rank-1.svg';
 import rank2 from '../../../imgs/rank-2.svg';
 import rank3 from '../../../imgs/rank-3.svg';
 import ProgressBar from "../../ProgressBar/ProgressBar.tsx";
+import Source from "../../Source/Source.tsx";
 
 interface DataProps {
   mana: number;
@@ -21,13 +22,6 @@ const rankMap: { [key: number]: { img: any; text: string; maxXP: number } } = {
   2: { img: rank2, text: 'ЧЛЕН КОМАНДЫ', maxXP: 500 },
   3: { img: rank3, text: 'ПИЛОТ-ИСПЫТАТЕЛЬ', maxXP: 1000 },
 };
-
-const Source = ({ num, img }: { num: number; img: string }) => (
-  <div className={st.sourse}>
-    <img src={img} alt="" />
-    {num}
-  </div>
-);
 
 const Rank = ({ rank }: { rank: number }) => {
   return (

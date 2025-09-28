@@ -43,7 +43,6 @@ const Profile = () => (
           <LiderList liders={Liders} userId={data.id}/>}
       />
     </div>
-    <div style={{height: '70px', width: '100%'}}/>
   </div>
 );
 

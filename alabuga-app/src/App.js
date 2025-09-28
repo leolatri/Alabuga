@@ -10,13 +10,14 @@ function App() {
       <div className={styles.app}>
         <div className={styles.app__container}>
           <Tabs />
-          
+
           <Routes>
             <Route path="/branches" element={<Branches />} />
             <Route path="/profile" element={<Profile />} />
             <Route path="/cart" element={<Profile />} />
             <Route path="/" element={<Profile />} />
           </Routes>
+          <div style={{ height: '70px', width: '100%' }} />
         </div>
       </div>
     </Router>

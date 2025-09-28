@@ -1,10 +1,12 @@
 @import '../../colors.scss';
+
 .branches {
   width: 100%;
   height: 100%;
 
+  top: 0;
+
   display: flex;
-  justify-content: start;
   align-items: center;
   flex-flow: column nowrap;
   gap: 20px;
@@ -13,7 +15,6 @@
     position: absolute;
     top: 20px;
     right: 0;
-    // z-index: -1;
   }
 
   &__title {
@@ -28,13 +29,6 @@
     display: flex;
     flex-flow: column nowrap;
     gap: 40px;
-  }
-
-  &__block {
-    color: $profile-color;
-  }
-
-  &__box {
-    border: solid 0.5px $profile-color;
+    z-index: 100;
   }
 }
