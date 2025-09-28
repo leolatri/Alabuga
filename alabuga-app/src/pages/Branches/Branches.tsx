@@ -5,10 +5,9 @@ import rocket from '../../imgs/rocket.svg';
 import Options from "../../components/Options/Options.tsx";
 import BranchList from "../../components/Branches/Branch/list/BranchList.tsx";
 import { ContentProps } from "../../components/Branches/Content/Content.tsx";
+import { BranchModel } from "../../models/branches/types.tsx";
 
-import { Branches as branches } from "../../test.tsx";
-
-const Branches = () => {
+const Branches = ({branches}: {branches: BranchModel[]}) => {
     const [activeOption, setActiveOption] = useState(0);
     return (
         <div className={st.branches}>

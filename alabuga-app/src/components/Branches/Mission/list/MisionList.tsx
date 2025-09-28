@@ -1,38 +1,42 @@
+// MissionList.tsx
 import React from 'react';
-import { useNavigate, useParams } from 'react-router-dom';
-import st from './mission.module.scss';
-import { MissionProps } from '../item/Mission.tsx';
+import { useParams } from 'react-router-dom';
+import { BranchModel } from '../../../../models/branches/types';
 
 interface MissionListProps {
-  missions: MissionProps[];
+  branches?: BranchModel[];
 }
 
-const MissionList = ({ missions }: MissionListProps) => {
-  const navigate = useNavigate();
-  const { branchName } = useParams();
+const MissionList = ({ branches = [] }: MissionListProps) => {
+  const { branchId } = useParams<{ branchId: string }>();
 
-  const handleMissionClick = (missionId: number) => {
-    navigate(`/mission-${missionId}`);
-  };
+  const currentBranch = branches.find(branch => 
+    branch.branch.id.toString() === branchId
+  );
+  
+  const missions = currentBranch?.missions || [];
+
+  if (!branchId) {
+    return <div>ID ветки не указан</div>;
+  }
+
+  if (!currentBranch) {
+    return <div>Ветка не найдена</div>;
+  }
 
   return (
-    <div className={st.missionList}>
-      <h1>Список миссий - {branchName}</h1>
+    <div>
+      <h2>Миссии ветки: {currentBranch.branch.name}</h2>
+      <p>{currentBranch.branch.description}</p>
       
-      <div className={st.missionList__grid}>
+      <div className={''}>
         {missions.map(mission => (
-          <div key={mission.content.id} className={st.missionCard}>
-            <h3>{mission.content.name}</h3>
-            <p>{mission.content.description}</p>
-            <div className={st.missionCard__status}>
-              Статус: {mission.content.status === 1 ? 'Активна' : 'Завершена'}
-            </div>
-            <button 
-              className={st.missionCard__button}
-              onClick={() => handleMissionClick(mission.content.id)}
-            >
-              Перейти к миссии
-            </button>
+          <div key={mission.id} className={''}>
+            <h3>{mission.name}</h3>
+            <p>{mission.description}</p>
+            <p>Опыт: {mission.experience}</p>
+            <p>Мана: {mission.mana}</p>
+            <span>Статус: {mission.status === 1 ? 'Активна' : 'Неактивна'}</span>
           </div>
         ))}
       </div>

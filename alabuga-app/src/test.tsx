@@ -1,20 +1,18 @@
-import { ArtifactProps } from "./components/Personal/Artifact/Artifact";
 import star from './imgs/star.svg';
 import meteor from './imgs/meteor.svg';
-import { LiderProps } from "./components/Personal/LiderBord/LiderBord";
-import { BranchListProps } from "./components/Branches/Branch/list/BranchList";
+import { BranchListProps } from "./components/Branches/Branch/list/BranchList.tsx";
 import { ContentProps } from "./components/Branches/Content/Content";
+import { ArtifactProps, LiderProps, PersonProps, ProfileModel } from "./models/personal/types.tsx";
+import { BranchModel } from './models/branches/types.tsx';
 
-export const data = {
+const data: PersonProps  = {
     id: 2,
     mana: 100,
     fullName: "Сидоров Егор Иванович",
     place: 2,
     experience: 200,
 };
-
-
-export const Artifacts: ArtifactProps[] = [
+const Artifacts: ArtifactProps[] = [
     {
         id: 1,
         name: 'полярная звезда',
@@ -38,7 +36,7 @@ export const Artifacts: ArtifactProps[] = [
     }
 ];
 
-export const Liders: LiderProps[] = [
+const Liders: LiderProps[] = [
     {
         id: 1,
         name: 'строкова алёна',
@@ -48,7 +46,7 @@ export const Liders: LiderProps[] = [
     {
         id: 2,
         name: 'сидров егор',
-        index: 0,
+        index: 1,
         counts: 99950,
     },
     {
@@ -126,7 +124,7 @@ export const Liders: LiderProps[] = [
 
 ];
 
-export const Branches: ContentProps[] = [
+const missions: ContentProps[] = [
     {
     id: 1,
     mana: 100,
@@ -181,4 +179,98 @@ export const Branches: ContentProps[] = [
     description: "Центральный офис управления",
     type: "headquarters"
   }
+]
+
+export const Branches: ContentProps[] = [
+    {
+    id: 1,
+    mana: 100,
+    name: "Первая",
+    status: 1,
+    experience: 5000,
+    description: "Основной филиал компании в центре города",
+    type: "main"
+  },
+  {
+    id: 2,
+    mana: 75,
+    name: "Вторая",
+    status: 1,
+    experience: 3200,
+    description: "Филиал в северной части города",
+    type: "regional"
+  },
+  {
+    id: 3,
+    mana: 50,
+    name: "Третья",
+    status: 0,
+    experience: 1500,
+    description: "Филиал на западе, временно неактивен",
+    type: "regional"
+  },
+  {
+    id: 4,
+    mana: 120,
+    name: "Четвертая",
+    status: 1,
+    experience: 4200,
+    description: "Филиал в южном районе с высоким трафиком",
+    type: "premium"
+  },
+  {
+    id: 5,
+    mana: 30,
+    name: "Пятая",
+    status: 0,
+    experience: 800,
+    description: "Новый филиал в восточной части",
+    type: "startup"
+  },
+  {
+    id: 6,
+    mana: 90,
+    name: "Шестая",
+    status: 1,
+    experience: 6500,
+    description: "Центральный офис управления",
+    type: "headquarters"
+  }
 ];
+
+export const ProfileData: ProfileModel = {
+    personData: data,
+    artifacts: Artifacts,
+    liderBord: Liders,
+}
+
+export const BranchData: BranchModel[] = [
+    {
+        branch: Branches[0],
+        missions: missions,
+    },
+    {
+        branch: Branches[1],
+        missions: missions,
+    },
+    {
+        branch: Branches[2],
+        missions: missions,
+    },
+    {
+        branch: Branches[3],
+        missions: missions,
+    },
+    {
+        branch: Branches[4],
+        missions: missions,
+    },
+    {
+        branch: Branches[5],
+        missions: missions,
+    },
+    {
+        branch: Branches[6],
+        missions: missions,
+    },
+]

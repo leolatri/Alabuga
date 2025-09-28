@@ -4,7 +4,7 @@ import NavigationButton from "../../../Button/Button.tsx";
 import Block from '../../../Block/Block.tsx';
 
 const BranchItem = ({ dataBranch }: { dataBranch: ContentProps }) => {
-  const path = `barnch${dataBranch.id}/missionList`;
+  const path = `/branch/${dataBranch.id}/missionList`;
   return (
     <div className={st.branchItem}>
       <Block
