@@ -1,16 +1,15 @@
-// MissionList.tsx
-import React from 'react';
 import { useParams } from 'react-router-dom';
-import { BranchModel } from '../../../../models/branches/types';
+import useBranchData from '../../../../hooks/useBranchData.tsx';
+import Title from '../../../Title/Title.tsx';
+import st from '../missions.module.scss';
+import MissionItem from '../item/MissionItem.tsx';
 
-interface MissionListProps {
-  branches?: BranchModel[];
-}
 
-const MissionList = ({ branches = [] }: MissionListProps) => {
+const MissionList = () => {
   const { branchId } = useParams<{ branchId: string }>();
+  const data = useBranchData();
 
-  const currentBranch = branches.find(branch => 
+  const currentBranch = data?.find(branch => 
     branch.branch.id.toString() === branchId
   );
   
@@ -25,21 +24,13 @@ const MissionList = ({ branches = [] }: MissionListProps) => {
   }
 
   return (
-    <div>
-      <h2>Миссии ветки: {currentBranch.branch.name}</h2>
-      <p>{currentBranch.branch.description}</p>
-      
-      <div className={''}>
+    <div className={st.missionList}>
+      <Title text={`${currentBranch.branch.name.toUpperCase()} • МИССИИ`} className={st.missionList__text}/>
         {missions.map(mission => (
-          <div key={mission.id} className={''}>
-            <h3>{mission.name}</h3>
-            <p>{mission.description}</p>
-            <p>Опыт: {mission.experience}</p>
-            <p>Мана: {mission.mana}</p>
-            <span>Статус: {mission.status === 1 ? 'Активна' : 'Неактивна'}</span>
-          </div>
+          <MissionItem
+            dataMission={mission}
+          />
         ))}
-      </div>
     </div>
   );
 };

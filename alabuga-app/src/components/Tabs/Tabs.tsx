@@ -5,7 +5,7 @@ import file from '../../imgs/file.svg';
 import st from './tabs.module.scss';
 import cx from 'classnames';
 
-const Tabs = () => {
+const Tabs = ({isAdmin}: {isAdmin: boolean}) => {
     const navigate = useNavigate();
     const location = useLocation();
 
@@ -15,26 +15,48 @@ const Tabs = () => {
         { id: 2, icon: cart, path: '/profile'  },
     ];
 
+    const tabsAdm = [
+        { id: 0, icon: file, path: '/adm/branches'},
+        { id: 1, icon: user, path: '/adm/peopleBord'},
+        { id: 2, icon: cart, path: '/adm/profile'},
+    ];
+
     const getActiveTab = () => {
-        switch (location.pathname) {
-            case '/branches':
-                return 0;
-            case '/profile':
-                return 1;
-            case '/profile':
-                return 2;
-            default:
-                return 1; 
+    const path = location.pathname;
+    
+    if (isAdmin) {
+        if (path.startsWith('/adm/branches') || path === '/adm') {
+            return 0;
         }
-    }; 
+        if (path === '/adm/peopleBord') {
+            return 1;
+        }
+        if (path === '/adm/cart') {
+            return 2;
+        }
+    } else {
+        if (path.startsWith('/branches') || path === '/') {
+            return 0;
+        }
+        if (path === '/profile') {
+            return 1;
+        }
+        if (path === '/cart') {
+            return 2;
+        }
+    }
+    return 0;
+};
 
     const handleTabClick = (path: string) => {
         navigate(path);
     }
+
+    const currentTabs = isAdmin ? tabsAdm : tabs;
     
     return (
         <div className={st.tabs}>
-            {tabs.map((tab) => (
+            {currentTabs.map((tab) => (
                 <div
                     key={tab.id}
                     className={cx(st.tab, getActiveTab() === tab.id ? st[`tab-active`] : '')}

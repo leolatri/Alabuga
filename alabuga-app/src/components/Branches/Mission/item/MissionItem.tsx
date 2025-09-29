@@ -1,15 +1,15 @@
-import st from '../mission.module.scss';
+import st from '../missions.module.scss';
 import Content, { ContentProps } from "../../Content/Content.tsx";
 import NavigationButton from "../../../Button/Button.tsx";
 import Block from '../../../Block/Block.tsx';
 
 const MissionItem = ({ dataMission }: { dataMission: ContentProps }) => {
-  const path = `/mission-${dataMission.id}`;
+  const path = `/mission/${dataMission.id}`;
   return (
-    <div className={st.branchItem}>
+    <div className={st.missionItem}>
       <Block
-        classBox={st.branchItem__box}
-        className={st.branchItem__block}
+        classBox={st.missionItem__box}
+        className={st.missionItem__block}
         child={
           <>
             <Content
