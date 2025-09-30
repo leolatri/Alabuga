@@ -1,6 +1,0 @@
-node_modules
-build
-.git
-.idea
-.vscode
-npm-debug.log*
