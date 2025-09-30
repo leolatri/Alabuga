@@ -1,0 +1,20 @@
+.source {
+    width: 50px;
+    height: auto;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-flow: row nowrap;
+    gap: 10px;
+
+    font-size: 16px;
+    color: gold !important;
+
+    img {
+        position: relative !important;
+        top: 0 !important;
+        // width: 80%;
+    }
+
+}
