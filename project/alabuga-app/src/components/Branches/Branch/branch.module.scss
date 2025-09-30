@@ -1,0 +1,42 @@
+@import '../../../colors.scss';
+
+.branchItem {
+    width: 100%;
+    height: 100%;
+
+    display: flex;
+    align-items: center;
+    flex-flow: column nowrap;
+    gap: 20px;
+
+    &__title {
+        color: $profile-color !important;
+        text-shadow: 0 0 38px $sun-color;
+    }
+
+    &__container {
+        width: 100%;
+        height: 95%;
+
+        display: flex;
+        flex-flow: column nowrap;
+        gap: 40px;
+    }
+
+    &__block {
+        color: $sun-color;
+    }
+
+    &__box {
+        border: solid 0.5px $sun-color;
+    }
+}
+
+.branchList {
+    width: 100%;
+    min-height: 100%;
+
+    display: flex;
+    flex-flow: column nowrap;
+    gap: 30px;
+}

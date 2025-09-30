@@ -1,0 +1,26 @@
+@import '../../colors.scss';
+
+.navigateButton {
+    width: 130px;
+    height: 40px;
+
+    margin-bottom: 20px;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    background-color: #f4ed6b59;
+    border: solid 0.5px $sun-color;
+    border-radius: 10px;
+
+    font-size: 15px;
+    font-weight: 50;
+    color: white;
+
+    transition: background-color 0.3s ease;
+
+    &:hover{
+        background-color: #f4ed6b8c;
+    }
+}

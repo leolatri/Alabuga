@@ -1,0 +1,51 @@
+@import '../../../colors.scss';
+
+.content{
+    width: 100%;
+    min-height: 100px;
+
+    display: flex;
+    flex-flow: column nowrap;
+    gap: 30px;
+    padding: 20px;
+
+    font-size: 16px;
+    color: white;
+
+    &__header{
+        width: 100%;
+        height: 10%;
+
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        flex-flow: row nowrap;
+
+        color: $gold-color;
+    }
+
+    &__text{
+        width: 50%;
+
+        display: flex;
+        align-items: center;
+        gap: 30px;
+        flex-flow: row nowrap;
+
+    }
+
+    &__body{
+        width: 100%;
+        height: 90%;
+
+        display: flex;
+        flex-flow: column nowrap;
+        gap: 23px;
+        font-weight: 50;
+
+        h1{
+            font-size: 20px;
+            font-weight: 500;
+        }
+    }
+}
