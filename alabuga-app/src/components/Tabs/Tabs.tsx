@@ -38,14 +38,14 @@ const Tabs = ({isAdmin}: {isAdmin: boolean}) => {
         if (path.startsWith('/branches') || path === '/') {
             return 0;
         }
-        if (path === '/profile') {
+        if (path === '/profile'  ||  path === '/') {
             return 1;
         }
         if (path === '/cart') {
             return 2;
         }
     }
-    return 0;
+    return 1;
 };
 
     const handleTabClick = (path: string) => {

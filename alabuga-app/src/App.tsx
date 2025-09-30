@@ -1,15 +1,15 @@
 import { BrowserRouter as Router, Routes, Route, Navigate } from 'react-router-dom';
-import Profile from "./pages/Profile/Profile.tsx";
-import styles from "./app.module.scss";
-import Branches from "./pages/Branches/Branches.tsx";
-import Tabs from "./components/Tabs/Tabs.tsx";
 import MissionList from './components/Branches/Mission/list/MisionList.tsx';
-import DataProvider from './Context/DataProvider.tsx';
-import useContextData from './hooks/useContextData.tsx';
-import PeopleBord from './pagesAdm/Profile/PeopleBord.tsx';
-import BranchesAdm from './pagesAdm/Branches/BranchesAdm.tsx';
-import { pathes } from './pathes.tsx';
 import CreateBranch from './pagesAdm/CreateBranches/CreateBranch.tsx';
+import BranchesAdm from './pagesAdm/Branches/BranchesAdm.tsx';
+import PeopleBord from './pagesAdm/Profile/PeopleBord.tsx';
+import useContextData from './hooks/useContextData.tsx';
+import DataProvider from './Context/DataProvider.tsx';
+import Branches from "./pages/Branches/Branches.tsx";
+import Profile from "./pages/Profile/Profile.tsx";
+import Tabs from "./components/Tabs/Tabs.tsx";
+import styles from "./app.module.scss";
+import { pathes } from './pathes.tsx';
 
 function App() {
   const isAdmin = useContextData().userPermissions === 1 ? false : true;
@@ -22,12 +22,15 @@ function App() {
 
           {isAdmin ? (
             <Routes>
-              {/* <Route path="/" element={<Navigate to={pathes.admin.branches} replace />} /> */}
               <Route path={pathes.admin.branches} element={<BranchesAdm />} />
               <Route path={pathes.admin.profile} element={<PeopleBord />} />
               <Route path={pathes.admin.createBranch} element={<CreateBranch />} />
               <Route path={pathes.admin.missionList} element={<MissionList />} />
               <Route path="*" element={<Navigate to={pathes.admin.branches} replace />} />
+              <Route
+                path="/branch/:branchId/missionList"
+                element={<MissionList />}
+              />
             </Routes>
           ) : (
             < Routes >
