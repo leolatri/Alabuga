@@ -51,11 +51,11 @@ def leaderboard(x_user_id: str | None = Header(default=None), db: Session = Depe
             EduUser.id,
             EduUser.full_name.label("name"),
             func.rank().over(order_by=[EduUser.experience.desc(), EduUser.id.asc()]).label("index"),
-            EduUser.experience.label("expirience")
+            EduUser.experience.label("experience")
         ).order_by(EduUser.experience.desc(), EduUser.id.asc())
     ).all()
     return [
-        LeaderDTO(id=r.id, name=r.name, index=r.index, expirience=r.expirience, isCurrentUser=(cid == r.id))
+        LeaderDTO(id=r.id, name=r.name, index=r.index, experience=r.experience, isCurrentUser=(cid == r.id))
         for r in rows
     ]
 

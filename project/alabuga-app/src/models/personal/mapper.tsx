@@ -24,7 +24,8 @@ export default function mapperPersonData(rowData?: ProfileDTO): ProfileModel {
         id: leader.id,
         index: leader.index,
         name: leader.name,
-        counts: leader.expirience, 
+        experience: leader.experience,
+        isCurrentUser: leader.isCurrentUser,
     }));
 
     return {

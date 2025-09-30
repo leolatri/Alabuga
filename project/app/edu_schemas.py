@@ -18,7 +18,7 @@ class LeaderDTO(BaseModel):
     id: int
     name: str
     index: int
-    expirience: int
+    experience: int
     isCurrentUser: bool
 
 class ContentRewardsDTO(BaseModel):

@@ -18,7 +18,8 @@ export interface LeaderProps {
     id: number;
     index?: number;
     name: string;
-    counts: number;
+    experience: number;
+    isCurrentUser: boolean;
 }
 
 

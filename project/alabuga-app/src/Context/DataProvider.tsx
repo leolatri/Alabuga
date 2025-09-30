@@ -1,18 +1,17 @@
 import React, { createContext, useEffect, useState } from "react";
-import { DataProps, Permissios } from "./dataProps.tsx";
-import { ProfileModel } from "../models/personal/types";
-import { BranchModel } from "../models/branches/types";
-import { BranchData, ProfileData } from "../test.tsx";
-import { EduAPI } from "../api/edu.ts";
 import mapperPersonData from "../models/personal/mapper.tsx";
-import { ProfileDTO } from "../api/types.ts";
+import { DataProps, Permissios } from "./dataProps.tsx";
+import { LeaderProps, ProfileModel } from "../models/personal/types";
+import { BranchModel } from "../models/branches/types";
+import { LeaderDTO, ProfileDTO } from "../api/types.ts";
+import { EduAPI } from "../api/edu.ts";
 
 export const DataContext = createContext<DataProps | undefined>(undefined);
 
-const DataProvider = ({children}: {children: React.ReactNode}) => {
+const DataProvider = ({ children }: { children: React.ReactNode }) => {
     const [profileData, setProfileData] = useState<ProfileModel>();
     const [branchData, setBranchData] = useState<BranchModel[]>([]);
-    const [loading, setLoading] = useState(false);
+    const [loading, setLoading] = useState<boolean>(false);
     const [userPermissions, setPermission] = useState<Permissios>(Permissios.USER);
 
     const value: DataProps = {
@@ -26,35 +25,37 @@ const DataProvider = ({children}: {children: React.ReactNode}) => {
         const fetchData = async () => {
             setLoading(true);
             try {
-                // const profile = await EduAPI.profile(); 
+                // const permission = await EduAPI.permission(); 
+                const permission = 0;
                 const leaderBord = await EduAPI.leaderboard();
-                const personData = await EduAPI.profile();
-                const artifacts = await EduAPI.artifacts();
-
-                const data: ProfileDTO = {
-                    leaderBord,
-                    personData, 
-                    artifacts,
-                }
-
                 const branches = await EduAPI.branches();
 
+                if (!permission) {
+                    const personData = await EduAPI.profile();
+                    const artifacts = await EduAPI.artifacts();
 
-                setProfileData(mapperPersonData(data));
+                    const data: ProfileDTO = {
+                        leaderBord,
+                        personData,
+                        artifacts,
+                    }
+                    setProfileData(mapperPersonData(data));
+                }
+
                 setBranchData(branches);
-                setPermission(0);
+                setPermission(permission);
             }
             catch {
                 throw Error('Error with catch data!');
             }
             finally {
-                setLoading(false);
+                setLoading(true);
             }
         }
         fetchData();
     }, [])
 
-    return(
+    return (
         <DataContext.Provider value={value}>
             {children}
         </DataContext.Provider>

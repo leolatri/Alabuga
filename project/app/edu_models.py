@@ -19,7 +19,7 @@ class EduArtifact(BaseEdu):
     id = Column(Integer, primary_key=True)
     img = Column(String(255), nullable=False)
     name = Column(String(255), nullable=False)
-    rarity = Column(Integer, nullable=False)  # 0=COMMON, 1=RARE
+    rarity = Column(Integer, nullable=False)
 
 class EduUserArtifact(BaseEdu):
     __tablename__ = "user_artifacts"

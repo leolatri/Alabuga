@@ -10,10 +10,11 @@ import Profile from "./pages/Profile/Profile.tsx";
 import Tabs from "./components/Tabs/Tabs.tsx";
 import styles from "./app.module.scss";
 import { pathes } from './pathes.tsx';
-import { UserSelector } from './components/UserSelector.tsx';
+import SkeletonCircle from './components/SkeletonCircle/SkeletonCircle.tsx';
 
 function App() {
   const isAdmin = useContextData().userPermissions === 0 ? false : true;
+  const { loading } = useContextData();
   console.log(isAdmin);
   return (
     <Router>
@@ -23,7 +24,7 @@ function App() {
 
           {isAdmin ? (
             <Routes>
-              <Route path={pathes.admin.branches} element={<BranchesAdm />} />
+              <Route path={pathes.admin.branches} element={loading ? <SkeletonCircle/> : <BranchesAdm />} />
               <Route path={pathes.admin.profile} element={<PeopleBord />} />
               <Route path={pathes.admin.createBranch} element={<CreateBranch />} />
               <Route path={pathes.admin.missionList} element={<MissionList />} />
@@ -35,10 +36,9 @@ function App() {
             </Routes>
           ) : (
             < Routes >
-              <Route path="/branches" element={<Branches />} />
-              <Route path="/profile" element={<Profile />} />
-              <Route path="/cart" element={<Profile />} />
-              <Route path="/" element={<Profile />} />
+              <Route path="/branches" element={loading ? <SkeletonCircle/> : <Branches />} />
+              <Route path="/profile" element={loading ? <SkeletonCircle/> : <Profile />} />
+              <Route path="/cart" element={loading ? <SkeletonCircle/> : <Profile />} />
               <Route
                 path="/branch/:branchId/missionList"
                 element={<MissionList />}

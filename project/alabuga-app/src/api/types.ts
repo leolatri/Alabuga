@@ -34,7 +34,7 @@ export interface LeaderDTO {
     id: number;
     name: string;
     index: number | 0;
-    expirience: number;
+    experience: number;
     isCurrentUser: boolean;
 }
 
