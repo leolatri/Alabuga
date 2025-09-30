@@ -14,7 +14,7 @@ class ArtifactDTO(BaseModel):
     name: str
     rarity: int  # 0/1
 
-class LiderDTO(BaseModel):
+class LeaderDTO(BaseModel):
     id: int
     name: str
     index: int

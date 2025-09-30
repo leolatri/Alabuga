@@ -1,5 +1,5 @@
 import { ProfileDTO } from "../../api/types.tsx";
-import { ProfileModel, PersonProps, ArtifactProps, LiderProps } from "./types";
+import { ProfileModel, PersonProps, ArtifactProps, LeaderProps } from "./types";
 
 export default function mapperPersonData(rowData?: ProfileDTO): ProfileModel {
     if (!rowData) throw new Error('Data is empty');
@@ -20,16 +20,16 @@ export default function mapperPersonData(rowData?: ProfileDTO): ProfileModel {
         rarity: artifact.rarity,
     }));
 
-    const liderBord: LiderProps[] = rowData.liderBord.map(lider => ({
-        id: lider.id,
-        index: lider.index,
-        name: lider.name,
-        counts: lider.expirience, 
+    const leaderBord: LeaderProps[] = rowData.leaderBord.map(leader => ({
+        id: leader.id,
+        index: leader.index,
+        name: leader.name,
+        counts: leader.expirience, 
     }));
 
     return {
         personData,
         artifacts,
-        liderBord,
+        leaderBord,
     };
 }

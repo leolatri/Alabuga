@@ -30,7 +30,7 @@ export interface ArtifactDTO {
     rarity: Rarity;
 }
 
-export interface LiderDTO {
+export interface LeaderDTO {
     id: number;
     name: string;
     index: number | 0;
@@ -39,7 +39,7 @@ export interface LiderDTO {
 }
 
 export interface ProfileDTO {
-    liderBord: LiderDTO[];
+    leaderBord: LeaderDTO[];
     personData: PersonDTO;
     artifacts: ArtifactDTO[];
 }

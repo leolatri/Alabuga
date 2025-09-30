@@ -1,5 +1,5 @@
 import { apiClient } from './client.ts';
-import { PersonDTO, ArtifactDTO, BranchDTO, ContentDTO, LiderDTO } from './types.ts';
+import { PersonDTO, ArtifactDTO, BranchDTO, ContentDTO, LeaderDTO } from './types.ts';
 
 export const EduAPI = {
   profile: () => apiClient.get<PersonDTO>('/edu/profile'),
@@ -9,7 +9,7 @@ export const EduAPI = {
     if (limit) params.append('limit', limit.toString());
     if (offset) params.append('offset', offset.toString());
     const query = params.toString();
-    return apiClient.get<LiderDTO[]>(`/edu/leaderboard${query ? `?${query}` : ''}`);
+    return apiClient.get<LeaderDTO[]>(`/edu/leaderboard${query ? `?${query}` : ''}`);
   },
   artifacts: () => apiClient.get<ArtifactDTO[]>('/edu/artifacts'),
   branches: () => apiClient.get<BranchDTO[]>('/edu/branches'),

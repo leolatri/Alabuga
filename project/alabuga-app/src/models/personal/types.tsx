@@ -14,7 +14,7 @@ export interface ArtifactProps {
     rarity: number,
 }
 
-export interface LiderProps {
+export interface LeaderProps {
     id: number;
     index?: number;
     name: string;
@@ -25,5 +25,5 @@ export interface LiderProps {
 export interface ProfileModel {
     personData: PersonProps;
     artifacts: ArtifactProps[];
-    liderBord: LiderProps[];
+    leaderBord: LeaderProps[];
 }

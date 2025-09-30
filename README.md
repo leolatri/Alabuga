@@ -58,7 +58,7 @@ docker compose up -d --build api
 # Профиль (PersonDTO)
 curl -H "X-User-Id: 1" http://localhost:8000/edu/profile
 
-# Лидерборд (LiderDTO[])
+# Лидерборд (LeaderDTO[])
 curl -H "X-User-Id: 1" http://localhost:8000/edu/leaderboard
 
 # Мои артефакты (ArtifactDTO[])
@@ -102,7 +102,7 @@ GET /edu/profile → профиль (PersonDTO)
 
 PUT /edu/profile → обновить профиль (PersonDTO)
 
-GET /edu/leaderboard → лидерборд (LiderDTO[])
+GET /edu/leaderboard → лидерборд (LeaderDTO[])
 
 GET /edu/artifacts → артефакты пользователя (ArtifactDTO[])
 

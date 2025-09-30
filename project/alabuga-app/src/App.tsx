@@ -10,9 +10,10 @@ import Profile from "./pages/Profile/Profile.tsx";
 import Tabs from "./components/Tabs/Tabs.tsx";
 import styles from "./app.module.scss";
 import { pathes } from './pathes.tsx';
+import { UserSelector } from './components/UserSelector.tsx';
 
 function App() {
-  const isAdmin = useContextData().userPermissions === 1 ? false : true;
+  const isAdmin = useContextData().userPermissions === 0 ? false : true;
   console.log(isAdmin);
   return (
     <Router>

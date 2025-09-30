@@ -6,7 +6,7 @@ from edu_models import (
     EduUser, EduArtifact, EduUserArtifact, EduContent, EduContentReq,
     EduContentRewards, EduContentRewardArtifact, EduUserProgress
 )
-from edu_schemas import PersonDTO, ArtifactDTO, LiderDTO, ContentDTO, ContentRewardsDTO, BranchDTO, BranchStatsDTO
+from edu_schemas import PersonDTO, ArtifactDTO, LeaderDTO, ContentDTO, ContentRewardsDTO, BranchDTO, BranchStatsDTO
 
 router = APIRouter(prefix="/edu", tags=["edu"])
 
@@ -42,8 +42,8 @@ def profile(x_user_id: str | None = Header(default=None), db: Session = Depends(
         fullName=row.full_name, experience=row.experience
     )
 
-# GET /edu/leaderboard -> LiderDTO[]
-@router.get("/leaderboard", response_model=list[LiderDTO])
+# GET /edu/leaderboard -> LeaderDTO[]
+@router.get("/leaderboard", response_model=list[LeaderDTO])
 def leaderboard(x_user_id: str | None = Header(default=None), db: Session = Depends(get_db)):
     cid = get_user_id(x_user_id) if x_user_id else None
     rows = db.execute(
@@ -55,7 +55,7 @@ def leaderboard(x_user_id: str | None = Header(default=None), db: Session = Depe
         ).order_by(EduUser.experience.desc(), EduUser.id.asc())
     ).all()
     return [
-        LiderDTO(id=r.id, name=r.name, index=r.index, expirience=r.expirience, isCurrentUser=(cid == r.id))
+        LeaderDTO(id=r.id, name=r.name, index=r.index, expirience=r.expirience, isCurrentUser=(cid == r.id))
         for r in rows
     ]
 

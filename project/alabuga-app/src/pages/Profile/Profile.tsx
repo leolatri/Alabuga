@@ -3,7 +3,7 @@ import st from "./profile.module.scss";
 import astronaut from '../../imgs/astronaut.svg';
 import Block from "../../components/Block/Block.tsx";
 import Title from "../../components/Title/Title.tsx";
-import LiderList from "../../components/Personal/LiderBord/LiderBord.tsx";
+import leaderList from "../../components/Personal/leaderBord/leaderBord.tsx";
 import ArtifactList from "../../components/Personal/Artifact/Artifact.tsx";
 import PersonData from "../../components/Personal/PersonData/PersonData.tsx";
 import useProfileData from "../../hooks/useProfileData.tsx";
@@ -37,7 +37,7 @@ const Profile = () => {
           classBox={st.profile__box}
           className={st.profile__block}
           child={
-            <LiderList liders={data.liderBord} userId={data.personData.id} />}
+            <leaderList leaders={data.leaderBord} userId={data.personData.id} />}
         />
       </div>
     </div>

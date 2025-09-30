@@ -1,23 +1,23 @@
 import React from "react";
-import st from './liderBord.module.scss';
+import st from './leaderBord.module.scss';
 import cx from 'classnames';
-import { LiderProps } from "../../../models/personal/types";
+import { LeaderProps } from "../../../models/personal/types";
 
-const LiderItem = ({ lider, idPerson }: {lider: LiderProps; idPerson: number }) => {
-    const isUserName = lider.id === idPerson;
+const leaderItem = ({ leader, idPerson }: {leader: LeaderProps; idPerson: number }) => {
+    const isUserName = leader.id === idPerson;
     return (
-        <div className={cx(st.liderItem, isUserName ? st[`liderItem-name`]: '')}>
-            <h1 className={lider.index && lider.index < 4 ? st[`liderItem-top`] : ''}>{lider.index}</h1>
-            <div className={st.liderItem__text}>
-                {lider.name.toUpperCase()}
-                <p>{lider.counts}</p>
+        <div className={cx(st.leaderItem, isUserName ? st[`leaderItem-name`]: '')}>
+            <h1 className={leader.index && leader.index < 4 ? st[`leaderItem-top`] : ''}>{leader.index}</h1>
+            <div className={st.leaderItem__text}>
+                {leader.name.toUpperCase()}
+                <p>{leader.counts}</p>
             </div>
         </div>
     )
 }
 
-const LiderBord = ({ liders, userId }: { liders: LiderProps[]; userId: number }) => {
-    const lidersList = liders
+const leaderBord = ({ leaders, userId }: { leaders: LeaderProps[]; userId: number }) => {
+    const leadersList = leaders
         .sort((a, b) => b.counts - a.counts)
         .slice(0, 10)
         .map((el, index) => ({
@@ -26,11 +26,11 @@ const LiderBord = ({ liders, userId }: { liders: LiderProps[]; userId: number })
         }));
 
     return (
-        <div className={st.liderList}>
-            {lidersList.map((el: LiderProps) => (
-                <LiderItem
+        <div className={st.leaderList}>
+            {leadersList.map((el: LeaderProps) => (
+                <leaderItem
                     key={el.id}
-                    lider={el}
+                    leader={el}
                     idPerson={userId}
                 />
             ))}
@@ -38,4 +38,4 @@ const LiderBord = ({ liders, userId }: { liders: LiderProps[]; userId: number })
     )
 }
 
-    export default React.memo(LiderBord);
+    export default React.memo(leaderBord);

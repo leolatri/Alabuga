@@ -3,6 +3,9 @@ import { DataProps, Permissios } from "./dataProps.tsx";
 import { ProfileModel } from "../models/personal/types";
 import { BranchModel } from "../models/branches/types";
 import { BranchData, ProfileData } from "../test.tsx";
+import { EduAPI } from "../api/edu.ts";
+import mapperPersonData from "../models/personal/mapper.tsx";
+import { ProfileDTO } from "../api/types.ts";
 
 export const DataContext = createContext<DataProps | undefined>(undefined);
 
@@ -23,11 +26,23 @@ const DataProvider = ({children}: {children: React.ReactNode}) => {
         const fetchData = async () => {
             setLoading(true);
             try {
-                const data = {profileData: ProfileData, branchData: BranchData, userPermissions: Permissios.USER}; 
+                // const profile = await EduAPI.profile(); 
+                const leaderBord = await EduAPI.leaderboard();
+                const personData = await EduAPI.profile();
+                const artifacts = await EduAPI.artifacts();
 
-                setProfileData(data.profileData);
-                setBranchData(data.branchData);
-                setPermission(data.userPermissions);
+                const data: ProfileDTO = {
+                    leaderBord,
+                    personData, 
+                    artifacts,
+                }
+
+                const branches = await EduAPI.branches();
+
+
+                setProfileData(mapperPersonData(data));
+                setBranchData(branches);
+                setPermission(0);
             }
             catch {
                 throw Error('Error with catch data!');

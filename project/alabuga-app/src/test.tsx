@@ -2,7 +2,7 @@ import star from './imgs/star.svg';
 import meteor from './imgs/meteor.svg';
 import { BranchListProps } from "./components/Branches/Branch/list/BranchList.tsx";
 import { ContentProps } from "./components/Branches/Content/Content";
-import { ArtifactProps, LiderProps, PersonProps, ProfileModel } from "./models/personal/types.tsx";
+import { ArtifactProps, LeaderProps, PersonProps, ProfileModel } from "./models/personal/types.tsx";
 import { BranchModel } from './models/branches/types.tsx';
 
 const data: PersonProps  = {
@@ -36,7 +36,7 @@ const Artifacts: ArtifactProps[] = [
     }
 ];
 
-const Liders: LiderProps[] = [
+const leaders: LeaderProps[] = [
     {
         id: 1,
         name: 'строкова алёна',
@@ -241,7 +241,7 @@ export const Branches: ContentProps[] = [
 export const ProfileData: ProfileModel = {
     personData: data,
     artifacts: Artifacts,
-    liderBord: Liders,
+    leaderBord: leaders,
 }
 
 export const BranchData: BranchModel[] = [

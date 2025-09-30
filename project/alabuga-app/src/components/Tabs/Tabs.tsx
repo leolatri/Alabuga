@@ -25,7 +25,7 @@ const Tabs = ({isAdmin}: {isAdmin: boolean}) => {
     const path = location.pathname;
     
     if (isAdmin) {
-        if (path.startsWith('/adm/branches') || path === '/adm') {
+        if (path.startsWith('/adm/branches')) {
             return 0;
         }
         if (path === '/adm/peopleBord') {
@@ -35,7 +35,7 @@ const Tabs = ({isAdmin}: {isAdmin: boolean}) => {
             return 2;
         }
     } else {
-        if (path.startsWith('/branches') || path === '/') {
+        if (path.startsWith('/branches')) {
             return 0;
         }
         if (path === '/profile'  ||  path === '/') {
