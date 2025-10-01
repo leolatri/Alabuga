@@ -6,7 +6,7 @@ import Title from "../../components/Title/Title.tsx";
 import ArtifactList from "../../components/Personal/Artifact/Artifact.tsx";
 import PersonData from "../../components/Personal/PersonData/PersonData.tsx";
 import useProfileData from "../../hooks/useProfileData.tsx";
-import LeaderBord from '../../components/Personal/LiderBord/LeaderBord.tsx';
+import LeaderBord from '../../components/Personal/LeaderBord/LeaderBord.tsx';
 
 
 const Profile = () => {

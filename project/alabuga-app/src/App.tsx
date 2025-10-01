@@ -13,7 +13,9 @@ import { pathes } from './pathes.tsx';
 import SkeletonCircle from './components/SkeletonCircle/SkeletonCircle.tsx';
 
 function App() {
-  const isAdmin = useContextData().userPermissions === 0 ? false : true;
+  // const isAdmin = useContextData().userPermissions === 0 ? false : true;
+  const isAdmin = false;
+
   const { loading } = useContextData();
   console.log(isAdmin);
   return (

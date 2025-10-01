@@ -15,7 +15,7 @@ const DataProvider = ({ children }: { children: React.ReactNode }) => {
     const [userPermissions, setPermission] = useState<Permissios>(Permissios.USER);
 
     const value: DataProps = {
-        userPermissions,
+        // userPermissions,
         profileData,
         branchData,
         loading,

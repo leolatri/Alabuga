@@ -7,7 +7,7 @@ export enum Permissios {
 }
 
 export interface DataProps {
-    userPermissions: Permissios;
+    // userPermissions: Permissios;
     profileData?: ProfileModel;
     branchData?: BranchModel[];
     loading: boolean;
