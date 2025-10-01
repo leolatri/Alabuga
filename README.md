@@ -2,14 +2,21 @@
 
 Платформа для обучения сотрудников и кандидатов в игровой форме.
 
-🚀 Быстрый старт
-## 1) собрать и запустить всё
+## Содержание
+- [Быстрый старт](#-быстрый-старт)
+- [Команда](#команда-акацуки) 
+- [Реализованные User Cases для пользователя](#реализованные-user-cases-для-пользователя) 
+- [Реализованные User Cases для HR](#реализованные-user-cases-для-сотрудника-hr) 
+- [Планы на развитие](#планы-на-развитие) 
+
+## 🚀 Быстрый старт
+### 1) Собрать и запустить всё
 docker compose up -d --build
 
-## 2) посмотреть статус контейнеров
+### 2) Посмотреть статус контейнеров
 docker compose ps
 
-## 3) логи (по желанию)
+### 3) Логи (по желанию)
 docker compose logs -f db
 docker compose logs -f api
 docker compose logs -f web
@@ -55,25 +62,25 @@ docker compose up -d --build api
 
 Во всех запросах ниже нужен заголовок X-User-Id: <int> — это ID пользователя из edu.users. В сидере есть пользователь 1.
 
-## Профиль (PersonDTO)
+### Профиль (PersonDTO)
 curl -H "X-User-Id: 1" http://localhost:8000/edu/profile
 
-## Лидерборд (LeaderDTO[])
+### Лидерборд (LeaderDTO[])
 curl -H "X-User-Id: 1" http://localhost:8000/edu/leaderboard
 
-## Мои артефакты (ArtifactDTO[])
+### Мои артефакты (ArtifactDTO[])
 curl -H "X-User-Id: 1" http://localhost:8000/edu/artifacts
 
-## Все ветки (BranchDTO[])
+### Все ветки (BranchDTO[])
 curl -H "X-User-Id: 1" http://localhost:8000/edu/branches
 
-## Конкретная ветка (BranchDTO)
+### Конкретная ветка (BranchDTO)
 curl -H "X-User-Id: 1" http://localhost:8000/edu/branches/1
 
-## Список миссий ветки (ContentDTO[])
+### Список миссий ветки (ContentDTO[])
 curl -H "X-User-Id: 1" http://localhost:8000/edu/branches/1/missionsList
 
-## Миссия по ID (ContentDTO)
+### Миссия по ID (ContentDTO)
 curl -H "X-User-Id: 1" http://localhost:8000/edu/mission/2
 
 🧩 Полезно знать
@@ -151,6 +158,11 @@ SQL-ошибки вида sql в начале файла → уберите сл
 Егор Сидоров - Backend developer, разработка БД, логики сервера
 
 Вадим Федоров - System analyst, анализ требований, описание документации
+
+#### Технологический стек
+- Frontend - React, JS
+- Backend - Python, FastAPI
+- DataBase - PostgreSQL
 
 ## Реализованные User Cases для пользователя
 
@@ -264,7 +276,8 @@ SQL-ошибки вида sql в начале файла → уберите сл
 
 ## Планы на развитие
 
-1) 
-2) 
-3) 
-4) 
+1) Реализовать обучающий онбординг для пользователя, который знакомит с функционалом сервиса
+2) Реализовать загрузку документо и выполнение разных типов миссий с клиента
+3) Реализовать загрузку дизайна пользователя из клиента HRa
+4) Модифицровать UI/UX для пользователя
+5) Интеграции с сервисами Alabuga
