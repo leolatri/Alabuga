@@ -49,7 +49,7 @@ const DataProvider = ({ children }: { children: React.ReactNode }) => {
                 throw Error('Error with catch data!');
             }
             finally {
-                setLoading(true);
+                setLoading(false);
             }
         }
         fetchData();
