@@ -6,7 +6,7 @@ from edu_models import (
     EduUser, EduArtifact, EduUserArtifact, EduContent, EduContentReq,
     EduContentRewards, EduContentRewardArtifact, EduUserProgress
 )
-from edu_schemas import PersonDTO, ArtifactDTO, LiderDTO, ContentDTO, ContentRewardsDTO, BranchDTO, BranchStatsDTO
+from edu_schemas import PersonDTO, ArtifactDTO, LeaderDTO, ContentDTO, ContentRewardsDTO, BranchDTO, BranchStatsDTO
 
 router = APIRouter(prefix="/edu", tags=["edu"])
 
