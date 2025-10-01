@@ -6,7 +6,7 @@ from edu_models import (
     EduUser, EduArtifact, EduUserArtifact, EduContent, EduContentReq,
     EduContentRewards, EduContentRewardArtifact, EduUserProgress
 )
-from edu_schemas import PersonDTO, ArtifactDTO, LeaderDTO, ContentDTO, ContentRewardsDTO, BranchDTO, BranchStatsDTO
+from edu_schemas import PersonDTO, ArtifactDTO, LiderDTO, ContentDTO, ContentRewardsDTO, BranchDTO, BranchStatsDTO
 
 router = APIRouter(prefix="/edu", tags=["edu"])
 
@@ -29,17 +29,22 @@ def profile(x_user_id: str | None = Header(default=None), db: Session = Depends(
 
     rows = db.execute(
         select(
-            EduUser.id, EduUser.full_name, EduUser.mana, EduUser.experience,
+            EduUser.id, EduUser.full_name, EduUser.mana, EduUser.experience, EduUser.permission,
             func.rank().over(order_by=[EduUser.experience.desc(), EduUser.id.asc()]).label("place")
         ).order_by(EduUser.experience.desc(), EduUser.id.asc())
     ).all()
+
     row = next((r for r in rows if r.id == uid), None)
     if not row:
         raise HTTPException(404, "User not found")
 
     return PersonDTO(
-        id=row.id, mana=row.mana, place=row.place,
-        fullName=row.full_name, experience=row.experience
+        id=row.id,
+        mana=row.mana,
+        place=row.place,
+        fullName=row.full_name,
+        experience=row.experience,
+        permissions=PermissionEnum(row.permission)
     )
 
 # GET /edu/leaderboard -> LeaderDTO[]
@@ -69,7 +74,11 @@ def update_profile(body: PersonDTO, db: Session = Depends(get_db)):
     u.full_name = body.fullName
     u.mana = body.mana
     u.experience = body.experience
-    db.commit(); db.refresh(u)
+    # Обновляем permissions — при необходимости тут можно ввести проверку прав
+    u.permission = int(body.permissions)
+
+    db.commit()
+    db.refresh(u)
 
     # вычислить место заново
     rows = db.execute(
@@ -80,7 +89,14 @@ def update_profile(body: PersonDTO, db: Session = Depends(get_db)):
     ).all()
     place = next((r.place for r in rows if r.id == u.id), 0)
 
-    return PersonDTO(id=u.id, mana=u.mana, place=place, fullName=u.full_name, experience=u.experience)
+    return PersonDTO(
+        id=u.id,
+        mana=u.mana,
+        place=place,
+        fullName=u.full_name,
+        experience=u.experience,
+        permissions=PermissionEnum(u.permission)
+    )
 
 # GET /edu/artifacts -> ArtifactDTO[]
 @router.get("/artifacts", response_model=list[ArtifactDTO])
@@ -98,7 +114,6 @@ def my_artifacts(x_user_id: str | None = Header(default=None), db: Session = Dep
     return [ArtifactDTO(id=r.id, img=r.img, name=r.name, rarity=r.rarity) for r in rows]
 
 # --- Helpers ---
-
 def build_content_dto(db: Session, c: EduContent, uid: int | None) -> ContentDTO:
     # требования
     req_ids = [r.required_content_id for r in db.execute(

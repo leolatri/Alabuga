@@ -11,6 +11,7 @@ class EduUser(BaseEdu):
     full_name = Column(String(255), nullable=False)
     mana = Column(Integer, nullable=False, default=0)
     experience = Column(Integer, nullable=False, default=0)
+    permission = Column(Integer, nullable=False, default=0)  # 0=USER, 1=ADMIN
     created_at = Column(DateTime(timezone=True), server_default=func.now(), nullable=False)
 
 class EduArtifact(BaseEdu):

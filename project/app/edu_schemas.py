@@ -1,5 +1,10 @@
 from pydantic import BaseModel
 from typing import Optional, List
+from enum import IntEnum
+
+class PermissionEnum(IntEnum):
+    USER = 0
+    ADMIN = 1
 
 class PersonDTO(BaseModel):
     id: int
@@ -7,6 +12,7 @@ class PersonDTO(BaseModel):
     place: int
     fullName: str
     experience: int
+    permissions: PermissionEnum  # новое поле
 
 class ArtifactDTO(BaseModel):
     id: int
