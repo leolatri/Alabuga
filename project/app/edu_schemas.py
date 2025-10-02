@@ -26,11 +26,11 @@ class LeaderDTO(BaseModel):
     id: int
     name: str
     index: int
-    expirience: int
+    experience: int
     isCurrentUser: bool
 
 # Совместимость со старым именем
-LiderDTO = LeaderDTO
+# LiderDTO = LeaderDTO
 
 class ContentRewardsDTO(BaseModel):
     artifact: Optional[List[int]] = None
