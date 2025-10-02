@@ -10,6 +10,7 @@ export default function mapperPersonData(rowData?: ProfileDTO): ProfileModel {
         place: rowData.personData.place,
         fullName: rowData.personData.fullName,
         experience: rowData.personData.experience,
+        permissions: rowData.personData.permissions,
     };
 
     const artifacts: ArtifactProps[] = rowData.artifacts.map(artifact => ({

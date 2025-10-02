@@ -1,9 +1,12 @@
+import { PermissionEnum } from "../../api/types";
+
 export interface PersonProps {
     id: number;
     mana: number;
     place: number;
     fullName: string;
     experience: number;
+    permissions: PermissionEnum;
 }
 
 export interface ArtifactProps {

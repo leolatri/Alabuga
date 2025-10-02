@@ -12,7 +12,6 @@ const DataProvider = ({ children }: { children: React.ReactNode }) => {
     const [profileData, setProfileData] = useState<ProfileModel>();
     const [branchData, setBranchData] = useState<BranchModel[]>([]);
     const [loading, setLoading] = useState<boolean>(false);
-    const [userPermissions, setPermission] = useState<Permissios>(Permissios.USER);
 
     const value: DataProps = {
         // userPermissions,
@@ -25,25 +24,18 @@ const DataProvider = ({ children }: { children: React.ReactNode }) => {
         const fetchData = async () => {
             setLoading(true);
             try {
-                // const permission = await EduAPI.permission(); 
-                const permission = 0;
+                const personData = await EduAPI.profile();
                 const leaderBord = await EduAPI.leaderboard();
                 const branches = await EduAPI.branches();
+                const artifacts = await EduAPI.artifacts();
 
-                if (!permission) {
-                    const personData = await EduAPI.profile();
-                    const artifacts = await EduAPI.artifacts();
-
-                    const data: ProfileDTO = {
-                        leaderBord,
-                        personData,
-                        artifacts,
-                    }
-                    setProfileData(mapperPersonData(data));
+                const data: ProfileDTO = {
+                    leaderBord,
+                    personData,
+                    artifacts,
                 }
-
+                setProfileData(mapperPersonData(data));
                 setBranchData(branches);
-                setPermission(permission);
             }
             catch {
                 throw Error('Error with catch data!');
@@ -54,7 +46,7 @@ const DataProvider = ({ children }: { children: React.ReactNode }) => {
         }
         fetchData();
     }, [])
-
+    console.log(`permission: ${profileData?.personData.permissions}`);
     return (
         <DataContext.Provider value={value}>
             {children}

@@ -8,6 +8,10 @@ export enum Status {
   COMPLETED = 1,
 }
 
+export enum PermissionEnum {
+    USER = 0,
+    ADMIN = 1
+}
 // export enum ContentType {
 //   LESSON = "lesson",
 //   PRACTICE = "practice",
@@ -21,6 +25,7 @@ export interface PersonDTO {
     place: number;
     fullName: string;
     experience: number;
+    permissions: PermissionEnum;
 }
 
 export interface ArtifactDTO {
