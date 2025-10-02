@@ -1,3 +1,4 @@
+# app/edu_schemas.py
 from pydantic import BaseModel
 from typing import Optional, List
 from enum import IntEnum
@@ -12,7 +13,7 @@ class PersonDTO(BaseModel):
     place: int
     fullName: str
     experience: int
-    permissions: PermissionEnum  # новое поле
+    permissions: PermissionEnum
 
 class ArtifactDTO(BaseModel):
     id: int
@@ -20,12 +21,16 @@ class ArtifactDTO(BaseModel):
     name: str
     rarity: int  # 0/1
 
+# Каноничное имя DTO лидерборда
 class LeaderDTO(BaseModel):
     id: int
     name: str
     index: int
-    experience: int
+    expirience: int
     isCurrentUser: bool
+
+# Совместимость со старым именем
+LiderDTO = LeaderDTO
 
 class ContentRewardsDTO(BaseModel):
     artifact: Optional[List[int]] = None
