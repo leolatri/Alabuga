@@ -11,7 +11,7 @@
 
 ## 🚀 Быстрый старт
 ### 1) Собрать и запустить всё
-docker compose up -d --build
+docker compose up -d --build (или sudo docker-compose up -d --build)
 
 ### 2) Посмотреть статус контейнеров
 docker compose ps
