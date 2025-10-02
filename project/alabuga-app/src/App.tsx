@@ -13,10 +13,8 @@ import { pathes } from './pathes.tsx';
 import SkeletonCircle from './components/SkeletonCircle/SkeletonCircle.tsx';
 
 function App() {
-  // const isAdmin = useContextData().userPermissions === 0 ? false : true;
-  const isAdmin = false;
-
-  const { loading } = useContextData();
+  const { loading, profileData } = useContextData();
+  const isAdmin = profileData?.personData.permissions === 1;
   console.log(isAdmin);
   return (
     <Router>
@@ -27,10 +25,10 @@ function App() {
           {isAdmin ? (
             <Routes>
               <Route path={pathes.admin.branches} element={loading ? <SkeletonCircle/> : <BranchesAdm />} />
-              <Route path={pathes.admin.profile} element={<PeopleBord />} />
-              <Route path={pathes.admin.createBranch} element={<CreateBranch />} />
-              <Route path={pathes.admin.missionList} element={<MissionList />} />
-              <Route path="*" element={<Navigate to={pathes.admin.branches} replace />} />
+              <Route path={pathes.admin.profile} element={loading ? <SkeletonCircle/> : <PeopleBord />} />
+              <Route path={pathes.admin.createBranch} element={loading ? <SkeletonCircle/> : <CreateBranch />} />
+              <Route path={pathes.admin.missionList} element={loading ? <SkeletonCircle/> : <MissionList />} />
+              {/* <Route path="*" element={loading ? <SkeletonCircle/> : <Navigate to={pathes.admin.branches} replace />} /> */}
               <Route
                 path="/branch/:branchId/missionList"
                 element={<MissionList />}

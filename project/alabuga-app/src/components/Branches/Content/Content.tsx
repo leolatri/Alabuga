@@ -28,7 +28,7 @@ const Content = ({ id, mana, type, name, status, experience, description }: Cont
                     {`${experience} XP`}
                     {mana && <Source num={mana} img={manaImg} />}
                 </div>
-                {type.toUpperCase()}
+                <p>{type.toUpperCase()}</p>
             </div>
             <div className={st.content__body}>
                 <h1>{name.toUpperCase()}</h1>

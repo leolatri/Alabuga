@@ -7,7 +7,6 @@ BEGIN
   RETURN NEW;
 END; $$ LANGUAGE plpgsql;
 
--- RANKS
 CREATE TABLE IF NOT EXISTS ranks (
   id                  uuid PRIMARY KEY DEFAULT gen_random_uuid(),
   name                text NOT NULL,
@@ -19,7 +18,6 @@ CREATE TABLE IF NOT EXISTS ranks (
 );
 CREATE UNIQUE INDEX IF NOT EXISTS ranks_order_uq ON ranks("order");
 
--- USERS
 CREATE TABLE IF NOT EXISTS users (
   id            uuid PRIMARY KEY DEFAULT gen_random_uuid(),
   first_name    text,
@@ -41,7 +39,6 @@ CREATE TRIGGER users_set_updated_at
 BEFORE UPDATE ON users
 FOR EACH ROW EXECUTE FUNCTION set_updated_at();
 
--- ARTIFACTS
 CREATE TABLE IF NOT EXISTS artifacts (
   id          uuid PRIMARY KEY DEFAULT gen_random_uuid(),
   name        text NOT NULL,
@@ -56,7 +53,6 @@ CREATE TRIGGER artifacts_set_updated_at
 BEFORE UPDATE ON artifacts
 FOR EACH ROW EXECUTE FUNCTION set_updated_at();
 
--- USER_ARTIFACTS
 CREATE TABLE IF NOT EXISTS user_artifacts (
   id           uuid PRIMARY KEY DEFAULT gen_random_uuid(),
   user_id      uuid NOT NULL REFERENCES users(id) ON DELETE CASCADE,
@@ -66,13 +62,11 @@ CREATE TABLE IF NOT EXISTS user_artifacts (
 );
 CREATE INDEX IF NOT EXISTS user_artifacts_user_idx ON user_artifacts(user_id);
 
--- CATEGORIES
 CREATE TABLE IF NOT EXISTS categories (
   id   uuid PRIMARY KEY DEFAULT gen_random_uuid(),
   name text NOT NULL
 );
 
--- MISSIONS
 CREATE TABLE IF NOT EXISTS missions (
   id               uuid PRIMARY KEY DEFAULT gen_random_uuid(),
   name             text NOT NULL,
@@ -96,21 +90,18 @@ CREATE TRIGGER missions_set_updated_at
 BEFORE UPDATE ON missions
 FOR EACH ROW EXECUTE FUNCTION set_updated_at();
 
--- MISSION_ORGANIZERS
 CREATE TABLE IF NOT EXISTS mission_organizers (
   mission_id uuid NOT NULL REFERENCES missions(id) ON DELETE CASCADE,
   user_id    uuid NOT NULL REFERENCES users(id)    ON DELETE CASCADE,
   PRIMARY KEY (mission_id, user_id)
 );
 
--- COMPETITIONS
 CREATE TABLE IF NOT EXISTS competitions (
   id          uuid PRIMARY KEY DEFAULT gen_random_uuid(),
   name        text NOT NULL,
   description text
 );
 
--- MISSIONS_COMPETITION
 CREATE TABLE IF NOT EXISTS missions_competition (
   id                   uuid PRIMARY KEY DEFAULT gen_random_uuid(),
   competition_id       uuid NOT NULL REFERENCES competitions(id) ON DELETE CASCADE,
@@ -120,7 +111,6 @@ CREATE TABLE IF NOT EXISTS missions_competition (
 );
 CREATE INDEX IF NOT EXISTS missions_competition_mission_idx ON missions_competition(mission_id);
 
--- USER_COMPETENCIES
 CREATE TABLE IF NOT EXISTS user_competencies (
   id              uuid PRIMARY KEY DEFAULT gen_random_uuid(),
   user_id         uuid NOT NULL REFERENCES users(id)        ON DELETE CASCADE,
@@ -129,7 +119,6 @@ CREATE TABLE IF NOT EXISTS user_competencies (
   UNIQUE (user_id, competition_id)
 );
 
--- JOURNAL
 CREATE TABLE IF NOT EXISTS journal (
   id          uuid PRIMARY KEY DEFAULT gen_random_uuid(),
   user_id     uuid NOT NULL REFERENCES users(id) ON DELETE CASCADE,
@@ -139,7 +128,6 @@ CREATE TABLE IF NOT EXISTS journal (
 );
 CREATE INDEX IF NOT EXISTS journal_user_idx ON journal(user_id);
 
--- STORE_ITEMS
 CREATE TABLE IF NOT EXISTS store_items (
   id           uuid PRIMARY KEY DEFAULT gen_random_uuid(),
   image        bytea,
@@ -157,7 +145,6 @@ CREATE TRIGGER store_items_set_updated_at
 BEFORE UPDATE ON store_items
 FOR EACH ROW EXECUTE FUNCTION set_updated_at();
 
--- RANK_REQUIRED_COMPETENCIES
 CREATE TABLE IF NOT EXISTS rank_required_competencies (
   id             uuid PRIMARY KEY DEFAULT gen_random_uuid(),
   competency_id  uuid NOT NULL REFERENCES competitions(id) ON DELETE CASCADE,

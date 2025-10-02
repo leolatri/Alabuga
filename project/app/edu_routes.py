@@ -2,6 +2,7 @@ from fastapi import APIRouter, Depends, Header, HTTPException
 from sqlalchemy.orm import Session
 from sqlalchemy import select, func
 from db import SessionLocal
+from typing import List, Any
 from edu_models import (
     EduUser, EduArtifact, EduUserArtifact, EduContent, EduContentReq,
     EduContentRewards, EduContentRewardArtifact, EduUserProgress
@@ -247,3 +248,25 @@ def mission(content_id: int, x_user_id: str | None = Header(default=None), db: S
     if not c:
         raise HTTPException(404, "Content not found")
     return build_content_dto(db, c, uid)
+
+@router.get("/admin/users")
+async def get_all_users(db: Session = Depends(get_db)):
+    """Получить всех пользователей"""
+    try:
+        from sqlalchemy import text
+        result = db.execute(text("SELECT id, full_name, permission, mana, experience FROM edu.users ORDER BY id"))
+        rows = result.fetchall()
+        
+        users = []
+        for row in rows:
+            users.append({
+                "id": row[0],
+                "full_name": row[1],
+                "permission": row[2],
+                "mana": row[3],
+                "experience": row[4]
+            })
+        
+        return users
+    except Exception as e:
+        return {"error": f"Database error: {str(e)}"}

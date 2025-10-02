@@ -20,5 +20,6 @@ export const EduAPI = {
     apiClient.post('/edu/progress', { contentId, status, progress }),
   completeMission: (contentId: number) =>
     apiClient.post('/edu/complete', { contentId }),
+  users: () => apiClient.get<PersonDTO[]>('/edu/admin/users'),
 };
 
