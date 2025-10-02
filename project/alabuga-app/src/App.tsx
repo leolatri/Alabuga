@@ -13,23 +13,22 @@ import { pathes } from './pathes.tsx';
 import SkeletonCircle from './components/SkeletonCircle/SkeletonCircle.tsx';
 
 function App() {
-  // const isAdmin = useContextData().userPermissions === 0 ? false : true;
-  const isAdmin = false;
-
+  const isAdmin = useContextData().profileData?.personData.permissions === 1;;
   const { loading } = useContextData();
+  
   console.log(isAdmin);
   return (
     <Router>
       <div className={styles.app}>
         <div className={styles.app__container}>
-          <Tabs isAdmin={isAdmin}/>
+          <Tabs isAdmin={isAdmin} />
 
           {isAdmin ? (
             <Routes>
-              <Route path={pathes.admin.branches} element={loading ? <SkeletonCircle/> : <BranchesAdm />} />
-              <Route path={pathes.admin.profile} element={<PeopleBord />} />
-              <Route path={pathes.admin.createBranch} element={<CreateBranch />} />
-              <Route path={pathes.admin.missionList} element={<MissionList />} />
+              <Route path={pathes.admin.branches} element={loading ? <SkeletonCircle /> : <BranchesAdm />} />
+              <Route path={pathes.admin.profile} element={loading ? <SkeletonCircle /> : <PeopleBord />} />
+              <Route path={pathes.admin.createBranch} element={loading ? <SkeletonCircle /> : <CreateBranch />} />
+              <Route path={pathes.admin.missionList} element={loading ? <SkeletonCircle /> : <MissionList />} />
               <Route path="*" element={<Navigate to={pathes.admin.branches} replace />} />
               <Route
                 path="/branch/:branchId/missionList"
@@ -38,9 +37,9 @@ function App() {
             </Routes>
           ) : (
             < Routes >
-              <Route path="/branches" element={loading ? <SkeletonCircle/> : <Branches />} />
-              <Route path="/profile" element={loading ? <SkeletonCircle/> : <Profile />} />
-              <Route path="/cart" element={loading ? <SkeletonCircle/> : <Profile />} />
+              <Route path="/branches" element={loading ? <SkeletonCircle /> : <Branches />} />
+              <Route path="/profile" element={loading ? <SkeletonCircle /> : <Profile />} />
+              <Route path="/cart" element={loading ? <SkeletonCircle /> : <Profile />} />
               <Route
                 path="/branch/:branchId/missionList"
                 element={<MissionList />}
