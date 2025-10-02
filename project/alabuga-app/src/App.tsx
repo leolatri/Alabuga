@@ -2,7 +2,7 @@ import { BrowserRouter as Router, Routes, Route, Navigate } from 'react-router-d
 import MissionList from './components/Branches/Mission/list/MisionList.tsx';
 import CreateBranch from './pagesAdm/CreateBranches/CreateBranch.tsx';
 import BranchesAdm from './pagesAdm/Branches/BranchesAdm.tsx';
-import PeopleBord from './pagesAdm/Profile/PeopleBord.tsx';
+import PeopleBord from './pagesAdm/PeopleBord/PeopleBord.tsx';
 import useContextData from './hooks/useContextData.tsx';
 import DataProvider from './Context/DataProvider.tsx';
 import Branches from "./pages/Branches/Branches.tsx";
@@ -14,8 +14,10 @@ import SkeletonCircle from './components/SkeletonCircle/SkeletonCircle.tsx';
 
 function App() {
   const { loading, profileData } = useContextData();
-  const isAdmin = profileData?.personData.permissions === 1;
-  console.log(isAdmin);
+  // const isAdmin = true;
+  const isAdmin = profileData?.personData.permissions === 0;
+
+
   return (
     <Router>
       <div className={styles.app}>
@@ -28,7 +30,6 @@ function App() {
               <Route path={pathes.admin.profile} element={loading ? <SkeletonCircle/> : <PeopleBord />} />
               <Route path={pathes.admin.createBranch} element={loading ? <SkeletonCircle/> : <CreateBranch />} />
               <Route path={pathes.admin.missionList} element={loading ? <SkeletonCircle/> : <MissionList />} />
-              {/* <Route path="*" element={loading ? <SkeletonCircle/> : <Navigate to={pathes.admin.branches} replace />} /> */}
               <Route
                 path="/branch/:branchId/missionList"
                 element={<MissionList />}

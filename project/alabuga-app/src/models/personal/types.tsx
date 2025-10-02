@@ -22,7 +22,7 @@ export interface LeaderProps {
     index?: number;
     name: string;
     experience: number;
-    isCurrentUser: boolean;
+    isCurrentUser?: boolean;
 }
 
 

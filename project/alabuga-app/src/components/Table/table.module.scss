@@ -1,0 +1,46 @@
+@import '../../colors.scss';
+
+.table {
+    width: 100%;
+    border: solid 0.5px $profile-color;
+    border-collapse: collapse;
+}
+
+table {
+    border: solid 0.5px $profile-color;
+    color: white;
+    font-weight: 50;
+    border-collapse: collapse;
+    width: 100%;
+
+    thead {
+        border-bottom: solid 2px $profile-color;
+        
+        th {
+            height: 50px;
+            text-transform: capitalize; 
+            border-bottom: solid 2px $profile-color;
+            padding: 0 15px;
+            text-align: center;
+        }
+    }
+    
+    tbody {
+        tr {
+            &:hover {
+                background-color: rgba(54, 54, 54, 0.315);
+            }
+            
+            td {
+                height: 50px;
+                text-align: center;
+                padding: 0 15px;
+                text-transform: capitalize; 
+
+                &:first-child {
+                    font-weight: bold;
+                }
+            }
+        }
+    }
+}

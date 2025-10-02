@@ -11,6 +11,7 @@ const data: PersonProps  = {
     fullName: "Сидоров Егор Иванович",
     place: 2,
     experience: 200,
+    permissions: 0,
 };
 const Artifacts: ArtifactProps[] = [
     {
@@ -36,7 +37,7 @@ const Artifacts: ArtifactProps[] = [
     }
 ];
 
-const leaders: LeaderProps[] = [
+export const leaders: LeaderProps[] = [
     {
         id: 1,
         name: 'строкова алёна',

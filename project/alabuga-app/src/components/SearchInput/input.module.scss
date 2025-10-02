@@ -1,0 +1,61 @@
+@import '../../colors.scss';
+
+.inputBlock{
+    width: 100%;
+    height: 50px;
+
+    padding: 10px 0px 10px 10px;
+
+    display: flex;
+    flex-flow: row nowrap;
+    align-items: center;
+    gap: 10px;
+
+    background-color: #53535352;
+    border: solid 0.5px $profile-color;
+    border-radius: 5px;
+    text-overflow: ellipsis;
+    transform: background-color 0.3s;
+
+    &:hover {
+        background-color: #69696952;
+    }
+
+    &:focus-within {
+        outline: none;
+        border: solid 0.5px $profile-color; 
+    }
+
+    input {
+        background: none;
+        text-overflow: ellipsis;
+        border: none !important;
+        
+        &:focus {
+            outline: none;
+            border: none !important;
+            box-shadow: none !important;
+        }
+    }
+
+    &__input {
+        width: 90%;
+        height: 100%;
+
+        font-size: 15px;
+        color: white;
+        caret-color: $profile-color;
+        text-overflow: ellipsis;
+
+        &:focus {
+            outline: none;
+            border: none !important;
+            box-shadow: none !important;
+        }
+
+        &::placeholder {
+            color: $gray-color;
+            font-size: 15px;
+        }
+    }
+}
