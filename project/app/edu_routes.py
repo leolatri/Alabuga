@@ -144,11 +144,19 @@ def build_content_dto(db: Session, c: EduContent, uid: int | None) -> ContentDTO
             progress = up.progress
 
     return ContentDTO(
-        id=c.id, mana=c.mana, type=c.type, name=c.name, status=status,
-        experience=c.experience, description=c.description, duration=c.duration,
-        progress=progress, order=c.order, requirements=(req_ids or None),
-        rewards=ContentRewardsDTO(artifact=(art_ids or None), mana=mana_r, experience=exp_r)
-    )
+    id=c.id,
+    mana=c.mana,
+    type=(c.category or c.type),  # <-- чтобы фронт видел «Квесты/Рекрутинг/…» и типы веток
+    name=c.name,
+    status=status,
+    experience=c.experience,
+    description=c.description,
+    duration=c.duration,
+    progress=progress,
+    order=c.order,
+    requirements=(req_ids or None),
+    rewards=ContentRewardsDTO(artifact=(art_ids or None), mana=mana_r, experience=exp_r)
+)
 
 # GET /edu/branches -> BranchDTO[]
 @router.get("/branches", response_model=list[BranchDTO])

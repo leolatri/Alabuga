@@ -32,7 +32,7 @@ class EduContent(BaseEdu):
     __tablename__ = "content"
     __table_args__ = {"schema": "edu"}
     id = Column(Integer, primary_key=True)
-    type = Column(String(50), nullable=False)
+    type = Column(String(50), nullable=False)  # 'branch' для веток
     name = Column(String(255), nullable=False)
     status = Column(Integer, nullable=False, default=0)
     experience = Column(Integer, nullable=False, default=0)
@@ -42,6 +42,7 @@ class EduContent(BaseEdu):
     order = Column("order", Integer, nullable=False)
     mana = Column(Integer, nullable=False, default=0)
     parent_id = Column(Integer, ForeignKey("edu.content.id", ondelete="CASCADE"))
+    category = Column(String(50))
 
 class EduContentReq(BaseEdu):
     __tablename__ = "content_requirements"
